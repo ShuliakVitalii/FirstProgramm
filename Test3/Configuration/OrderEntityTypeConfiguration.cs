@@ -35,9 +35,12 @@ namespace Test3
                 .IsRequired();
 
             builder
-                .Property(x => x.ProductList)
-                .HasColumnName("Список позиций заказа")
-                .IsRequired();
+                .Property(x => x.ProductId)
+                .HasColumnName(@"Список заказов");
+                //.HasComputedColumnSql(@"SELECT * FROM dbo.Заказы з
+                //                        ");
+
+            
         }
     }
 }

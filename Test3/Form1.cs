@@ -18,8 +18,10 @@ namespace Test3
             db.Products.Load();
             dataGridView1.DataSource = db.Orders.Local.ToBindingList();
             dataGridView2.DataSource = db.Products.Local.ToBindingList();
+            dataGridView1.Columns["Product"].Visible = false;
+            dataGridView2.Columns["Order"].Visible = false;
         }
-        // нипка "”далить"
+        // нопка "”далить"
         private void button3_Click(object sender, EventArgs e)
         {
             if (label4.Text == String.Empty) return;
@@ -49,7 +51,7 @@ namespace Test3
             order.NumberOrders = Convert.ToInt32(textBox2.Text);
             order.FullNameClients = Convert.ToString(textBox3.Text);
             order.TotalAmount = Convert.ToDecimal(textBox4.Text);
-            order.ProductList = Convert.ToString(textBox5.Text);
+            order.ProductId = Convert.ToInt32(textBox5.Text);
 
             db.Entry(order).State = EntityState.Modified;
             db.Orders.Update(order);
@@ -76,7 +78,7 @@ namespace Test3
                 NumberOrders = Convert.ToInt32(textBox2.Text),
                 FullNameClients = Convert.ToString(textBox3.Text),
                 TotalAmount = Convert.ToDecimal(textBox4.Text),
-                ProductList = Convert.ToString(textBox5.Text),
+                ProductId = Convert.ToInt32(textBox5.Text),
             };
 
             db.Orders.Add(order);
@@ -89,6 +91,7 @@ namespace Test3
             textBox4.Text = String.Empty;
             textBox5.Text = String.Empty;
         }
+
         private void DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
@@ -105,8 +108,7 @@ namespace Test3
             textBox2.Text = Convert.ToString(order.NumberOrders);
             textBox3.Text = order.FullNameClients;
             textBox4.Text = Convert.ToString(order.TotalAmount);
-            textBox5.Text = Convert.ToString(order.ProductList);
+            textBox5.Text = Convert.ToString(order.ProductId);
         }
-
     }
 }

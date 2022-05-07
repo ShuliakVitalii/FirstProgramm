@@ -26,8 +26,12 @@ namespace Test3
             builder
                 .Property(x => x.Value)
                 .HasColumnName("Стоимость")
-                .HasColumnType("money")
-                .IsRequired();
+                .HasComputedColumnSql("[Цена] * [Количетсво]");
+
+            builder
+            .HasOne(t => t.Order)
+            .WithOne(t => t.Product)
+            .HasForeignKey<Order>(t => t.ProductId);
         }
     }
 }

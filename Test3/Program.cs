@@ -1,8 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.Logging;
-
 namespace Test3
 {
     internal static class Program
@@ -31,7 +26,6 @@ namespace Test3
                 NumberOrders = 1,
                 FullNameClients = "Филип Николай Валерьевич",
                 TotalAmount = 124.5M,
-                ProductList = "1, 2, 3, 4"
             };
             var order2 = new Order
             {
@@ -39,7 +33,6 @@ namespace Test3
                 NumberOrders = 2,
                 FullNameClients = "Галкин Виктор Бориславович",
                 TotalAmount = 145.5M,
-                ProductList = "1, 3, 4"
             };
             var order3 = new Order
             {
@@ -47,39 +40,35 @@ namespace Test3
                 NumberOrders = 3,
                 FullNameClients = "Зверенцов Олег Самойлович",
                 TotalAmount = 15M,
-                ProductList = "4"
             };
             var product1 = new Product
             {
                 Price = 15M,
                 Quantity = 3,
-                Value = 45M,
             };
             var product2 = new Product
             {
                 Price = 20M,
                 Quantity = 4,
-                Value = 80M,
             };
             var product3 = new Product
             {
                 Price = 102M,
                 Quantity = 1,
-                Value = 102M,
             };
             var product4 = new Product
             {
                 Price = 15M,
                 Quantity = 5,
-                Value = 75M,
             };
+
+            order1.Product=product1;
+            order2.Product=product2;
+            order3.Product=product3;
+
             dbContext.Add(order1);
             dbContext.Add(order2);
             dbContext.Add(order3);
-            dbContext.Add(product1);
-            dbContext.Add(product2);
-            dbContext.Add(product3);
-            dbContext.Add(product4);
 
             dbContext.SaveChanges();
         }
